@@ -1,5 +1,5 @@
 {
-  "name": "snumber",
+  "name": "@bryanlee-hao/snumber",
   "version": "0.1.0",
   "description": "A chainable, functional number utility for precise decimal calculations",
   "type": "module",
