@@ -111,8 +111,9 @@ class SNumber {
    */
   valueOf()  { return this._value }
   toNumber() { return this._value }
-  toFixed(digits: number) {
-    return this.fixed(digits).valueOf()
+  toFixed(digits: number, options?: { pad?: boolean }): string {
+    const val = this.fixed(digits).valueOf()
+    return options?.pad ? val.toFixed(digits) : String(val)
   }
   toString() { return String(this._value) }
   format(format: string) {
