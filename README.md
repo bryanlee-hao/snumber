@@ -1,6 +1,6 @@
 # snumber
 
-[![npm version](https://img.shields.io/npm/v/@bryanlee-hao/snumber)](https://www.npmjs.com/package/@bryanlee-hao/snumber)
+[![npm version](https://img.shields.io/npm/v/snumber.js)](https://www.npmjs.com/package/snumber.js)
 [![gzip size](https://img.shields.io/badge/gzip-0.8kB-brightgreen)](https://github.com/bryanlee-hao/snumber)
 
 Tired of writing `Math.round(value * 100) / 100` over and over? **snumber** gives you a clean, chainable API for everyday number operations — arithmetic, rounding, formatting, and more — all in **under 1kB gzipped**.
@@ -12,13 +12,13 @@ No dependencies. No magic. Just a better way to work with numbers.
 ## Install
 
 ```bash
-npm install @bryanlee-hao/snumber
+npm install snumber.js
 ```
 
 ## Quick Start
 
 ```ts
-import { sn } from '@bryanlee-hao/snumber'
+import { sn } from 'snumber.js'
 
 // Chainable arithmetic
 sn(1.1).add(2.2).mul(3).valueOf()          // 9.9

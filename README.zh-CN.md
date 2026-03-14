@@ -1,6 +1,6 @@
 # snumber
 
-[![npm version](https://img.shields.io/npm/v/@bryanlee-hao/snumber)](https://www.npmjs.com/package/@bryanlee-hao/snumber)
+[![npm version](https://img.shields.io/npm/v/snumber.js)](https://www.npmjs.com/package/snumber.js)
 [![gzip size](https://img.shields.io/badge/gzip-0.8kB-brightgreen)](https://github.com/bryanlee-hao/snumber)
 
 还在写 `Math.round(value * 100) / 100` 这种代码吗？**snumber** 提供了一套简洁的链式 API，覆盖日常数值计算、取整、格式化等场景，gzip 后仅 **不到 1kB**。
@@ -12,13 +12,13 @@
 ## 安装
 
 ```bash
-npm install @bryanlee-hao/snumber
+npm install snumber.js
 ```
 
 ## 快速上手
 
 ```ts
-import { sn } from '@bryanlee-hao/snumber'
+import { sn } from 'snumber.js'
 
 // 链式四则运算
 sn(1.1).add(2.2).mul(3).valueOf()          // 9.9
