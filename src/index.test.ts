@@ -170,6 +170,16 @@ describe('output methods', () => {
     expect(sn(5).toFixed(2)).toBe('5')
   })
 
+  it('toFixed supports custom rounding function', () => {
+    expect(sn(3.1415926).toFixed(2, { roundFn: Math.ceil })).toBe('3.15')
+    expect(sn(3.1415926).toFixed(2, { roundFn: Math.floor })).toBe('3.14')
+  })
+
+  it('toFixed supports custom rounding function with pad', () => {
+    expect(sn(1.001).toFixed(2, { pad: true, roundFn: Math.ceil })).toBe('1.01')
+    expect(sn(1.009).toFixed(2, { pad: true, roundFn: Math.floor })).toBe('1.00')
+  })
+
   it('toString returns string', () => {
     expect(sn(42).toString()).toBe('42')
     expect(sn(3.14).toString()).toBe('3.14')
@@ -178,6 +188,34 @@ describe('output methods', () => {
   it('format replaces %s with value', () => {
     expect(sn(42).format('The answer is %s!')).toBe('The answer is 42!')
     expect(sn(3.14).format('%s + %s')).toBe('3.14 + 3.14')
+  })
+
+  it('isNaN detects NaN values', () => {
+    expect(sn(Number.NaN).isNaN()).toBe(true)
+    expect(sn(42).isNaN()).toBe(false)
+    expect(sn(Infinity).isNaN()).toBe(false)
+  })
+
+  it('isFinite detects finite numbers', () => {
+    expect(sn(42).isFinite()).toBe(true)
+    expect(sn(Infinity).isFinite()).toBe(false)
+    expect(sn(-Infinity).isFinite()).toBe(false)
+    expect(sn(Number.NaN).isFinite()).toBe(false)
+  })
+
+  it('isSafeInteger detects safe integers', () => {
+    expect(sn(42).isSafeInteger()).toBe(true)
+    expect(sn(Number.MAX_SAFE_INTEGER).isSafeInteger()).toBe(true)
+    expect(sn(Number.MAX_SAFE_INTEGER + 1).isSafeInteger()).toBe(false)
+    expect(sn(3.14).isSafeInteger()).toBe(false)
+  })
+
+  it('isInteger detects integers', () => {
+    expect(sn(42).isInteger()).toBe(true)
+    expect(sn(-42).isInteger()).toBe(true)
+    expect(sn(3.14).isInteger()).toBe(false)
+    expect(sn(Infinity).isInteger()).toBe(false)
+    expect(sn(Number.NaN).isInteger()).toBe(false)
   })
 })
 

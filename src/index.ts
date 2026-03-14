@@ -111,14 +111,22 @@ class SNumber {
    */
   valueOf()  { return this._value }
   toNumber() { return this._value }
-  toFixed(digits: number, options?: { pad?: boolean }): string {
-    const val = this.fixed(digits).valueOf()
+  toFixed(digits: number, options?: { pad?: boolean; roundFn?: RoundingFn }): string {
+    const val = this.fixed(digits, options?.roundFn).valueOf()
     return options?.pad ? val.toFixed(digits) : String(val)
   }
   toString() { return String(this._value) }
   format(format: string) {
     return format.replace(/%s/g, this.toString())
   }
+
+  /**
+   * check if the value is NaN or Infinity
+   */
+  isNaN() { return Number.isNaN(this._value) }
+  isFinite() { return Number.isFinite(this._value) }
+  isSafeInteger() { return Number.isSafeInteger(this._value) }
+  isInteger() { return Number.isInteger(this._value) }
 
   [Symbol.toPrimitive](hint: string) {
     return hint === 'string' ? this.toString() : this._value
