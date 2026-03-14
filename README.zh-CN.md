@@ -137,14 +137,33 @@ sn(1234.567891).thousandSeparator({ integerOnly: false }) // "1,234.567,891"
 |------|---------|------|
 | `.valueOf()` | `number` | 原始数值 |
 | `.toNumber()` | `number` | 同 `valueOf()` |
-| `.toFixed(digits, { pad? })` | `string` | 保留小数位；`pad: true` 时补零 |
+| `.toFixed(digits, { pad?, roundFn? })` | `string` | 保留小数位；支持自定义 `roundFn`；`pad: true` 时补零 |
 | `.toString()` | `string` | 字符串 |
 | `.format(fmt)` | `string` | 将 `%s` 替换为数值 |
 
 ```ts
 sn(3.1).toFixed(4)                   // "3.1"
 sn(3.1).toFixed(4, { pad: true })    // "3.1000"
+sn(3.1415).toFixed(2, { roundFn: sn.ceil }) // "3.15"
 sn(42).format('答案是 %s')            // "答案是 42"
+```
+
+---
+
+### 检查方法
+
+| 方法 | 返回类型 | 说明 |
+|------|---------|------|
+| `.isNaN()` | `boolean` | 是否为 `NaN` |
+| `.isFinite()` | `boolean` | 是否为有限数字 |
+| `.isSafeInteger()` | `boolean` | 是否为安全整数 |
+| `.isInteger()` | `boolean` | 是否为整数 |
+
+```ts
+sn(Number.NaN).isNaN()          // true
+sn(Infinity).isFinite()         // false
+sn(Number.MAX_SAFE_INTEGER).isSafeInteger() // true
+sn(42).isInteger()              // true
 ```
 
 ---

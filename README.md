@@ -137,14 +137,33 @@ sn(1234.567891).thousandSeparator({ integerOnly: false }) // "1,234.567,891"
 |--------|---------|-------------|
 | `.valueOf()` | `number` | Raw numeric value |
 | `.toNumber()` | `number` | Same as `valueOf()` |
-| `.toFixed(digits, { pad? })` | `string` | Fixed decimal places; `pad: true` pads with zeros |
+| `.toFixed(digits, { pad?, roundFn? })` | `string` | Fixed decimal places; supports custom `roundFn`; `pad: true` pads with zeros |
 | `.toString()` | `string` | String representation |
 | `.format(fmt)` | `string` | Replace `%s` with the value |
 
 ```ts
 sn(3.1).toFixed(4)                   // "3.1"
 sn(3.1).toFixed(4, { pad: true })    // "3.1000"
+sn(3.1415).toFixed(2, { roundFn: sn.ceil }) // "3.15"
 sn(42).format('The answer is %s')    // "The answer is 42"
+```
+
+---
+
+### Checks
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `.isNaN()` | `boolean` | Whether the value is `NaN` |
+| `.isFinite()` | `boolean` | Whether the value is a finite number |
+| `.isSafeInteger()` | `boolean` | Whether the value is a safe integer |
+| `.isInteger()` | `boolean` | Whether the value is an integer |
+
+```ts
+sn(Number.NaN).isNaN()          // true
+sn(Infinity).isFinite()         // false
+sn(Number.MAX_SAFE_INTEGER).isSafeInteger() // true
+sn(42).isInteger()              // true
 ```
 
 ---
